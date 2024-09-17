@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №1: Вычисление sin(x)/x</title>
+    <script type="text/javascript">
+        function factorial(n) {
+            return n <= 1 ? 1 : n * factorial(n - 1);
+        }
+
+        function calculateSinOverX(x) {
+            if (x == 0) {
+                return 1;
+            }
+
+            let sum = 0;
+            let terms = Number(document.forms["form"].elements["i"].value);
+
+            for (let n = 0; n < terms; n++) {
+                let term = Math.pow(-1, n) * Math.pow(x, 2 * n) / factorial(2 * n + 1);
+                sum += term;
+            }
+
+            return sum;
+        }
+
+        function calculate() {
+            var x = Number(document.forms["form"].elements["x"].value);
+            var result = calculateSinOverX(x);
+            document.write("Результат: " + result);
+        }
+    </script>
+</head>
+<body>
+<h1>Вычисление sin(x)/x</h1>
+<section>
+    <div class="container">
+        <form id="form">
+            <input id="x" type="text" name="x" placeholder="Введите x">
+            <input id="i" type="text" name="i" placeholder="Введите кол-во итераций">
+            <input class="button" onclick="calculate()" type="submit" value="Рассчитать">
+        </form>
+    </div>
+</section>
+</body>
+</html>
